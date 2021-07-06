@@ -61,8 +61,11 @@ const usuariosGet = async (req=request, res = response)  => {
 
     }
 
-
+    //const uid = req.uid;
     const usuario = await Usuario.findByIdAndUpdate(id, resto, {new:true});
+    const usuarioAutenticado = req.usuario;
+
+
 
     console.log('ids=',id);
 
@@ -70,7 +73,9 @@ const usuariosGet = async (req=request, res = response)  => {
         res.status("200").json({
             ok:true,
             msg:"put Api controladorss",
-            usuario
+            usuario,
+            usuarioAutenticado
+            //uid
         })
   }
 
@@ -127,6 +132,7 @@ const usuariosGet = async (req=request, res = response)  => {
       //const udsuario = await Usuario.findByIdAndDelete(id);
 
       const udsuario = await Usuario.findByIdAndUpdate(id, {estado:false});
+
 
         res.status("200").json({
             ok:true,
